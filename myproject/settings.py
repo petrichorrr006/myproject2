@@ -125,13 +125,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-<<<<<<< HEAD
-STATIC_URL = 'static/'
-
-# Media files (user-uploaded images)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-=======
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -141,5 +134,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 if not DEBUG:
     # Render runs behind a proxy (sets X-Forwarded-Proto)
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 

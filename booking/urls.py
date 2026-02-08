@@ -1,10 +1,10 @@
 from django.urls import path
+
 from .views import (
     home,
     slots_page,
     specialization_page,
     provider_detail,
-<<<<<<< HEAD
     book_slot,
     my_appointments,
     my_schedule,
@@ -13,8 +13,6 @@ from .views import (
     logout_view,
     verify_phone,
     resend_otp,
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
     slots_api,
     providers_api,
     bookings_api,

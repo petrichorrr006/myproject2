@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -8,12 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils import timezone
 from .models import Provider, TimeSlot, Booking, PatientProfile
-=======
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from .models import Provider, TimeSlot, Booking
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+
 import json
 
 
@@ -137,12 +131,7 @@ def home(request):
 
 
 def slots_page(request):
-<<<<<<< HEAD
     slots = TimeSlot.objects.select_related('provider__user').all()
-=======
-    slots = TimeSlot.objects.select_related('provider').all()
-    return render(request, 'booking/slots.html', {'slots': slots})
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 
     selected_spec = request.GET.get('spec', '')
     if selected_spec:
@@ -299,11 +288,7 @@ def slots_api(request, slot_id=None):
                 'is_booked': slot.is_booked,
             }
             return JsonResponse(data)
-<<<<<<< HEAD
         slots = TimeSlot.objects.select_related('provider__user').all()
-=======
-        slots = TimeSlot.objects.select_related('provider').all()
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
         data = [
             {
                 'id': s.id,
@@ -346,10 +331,6 @@ def slots_api(request, slot_id=None):
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 
-<<<<<<< HEAD
-=======
-# ---------- API: Providers ----------
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 @csrf_exempt
 def providers_api(request, provider_id=None):
     if request.method == 'GET':
@@ -374,10 +355,6 @@ def providers_api(request, provider_id=None):
 
     if request.method == 'POST':
         data = json.loads(request.body)
-<<<<<<< HEAD
-=======
-        from django.contrib.auth.models import User
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
         user = User.objects.get(id=data['user_id'])
         provider = Provider.objects.create(
             user=user,
@@ -404,10 +381,6 @@ def providers_api(request, provider_id=None):
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 
-<<<<<<< HEAD
-=======
-# ---------- API: Bookings ----------
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 @csrf_exempt
 def bookings_api(request, booking_id=None):
     if request.method == 'GET':
@@ -417,10 +390,7 @@ def bookings_api(request, booking_id=None):
                 'id': booking.id,
                 'client_id': booking.client_id,
                 'slot_id': booking.slot_id,
-<<<<<<< HEAD
                 'status': booking.status,
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
                 'created_at': booking.created_at.isoformat(),
             }
             return JsonResponse(data)
@@ -430,10 +400,7 @@ def bookings_api(request, booking_id=None):
                 'id': b.id,
                 'client_id': b.client_id,
                 'slot_id': b.slot_id,
-<<<<<<< HEAD
                 'status': b.status,
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
                 'created_at': b.created_at.isoformat(),
             }
             for b in bookings
@@ -479,7 +446,3 @@ def bookings_api(request, booking_id=None):
         return JsonResponse({'status': 'deleted'})
 
     return JsonResponse({'error': 'Method not allowed'}, status=405)
-<<<<<<< HEAD
-=======
-
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf

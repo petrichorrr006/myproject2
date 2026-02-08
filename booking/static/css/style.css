@@ -261,7 +261,6 @@ body {
     color: var(--color-primary);
 }
 
-<<<<<<< HEAD
 /* --- Filter bar (slots page) --- */
 .filter-bar {
     display: flex;
@@ -295,8 +294,6 @@ body {
     border-color: var(--color-primary);
 }
 
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 /* --- Заголовки страниц (slots, specialization, doctor) — по центру --- */
 .container {
     background: transparent;
@@ -510,7 +507,6 @@ body {
     text-decoration: underline;
 }
 
-<<<<<<< HEAD
 /* --- Профиль врача (страница provider_detail) --- */
 .provider-profile {
     display: flex;
@@ -536,8 +532,6 @@ body {
     background: var(--color-bg);
 }
 
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 /* --- Список слотов (страница врача) — центрирован --- */
 .slot-list {
     list-style: none;
@@ -588,7 +582,6 @@ body {
     margin: 0 auto;
 }
 
-<<<<<<< HEAD
 /* --- Auth forms --- */
 .auth-card {
     max-width: 400px;
@@ -853,8 +846,6 @@ body {
     font-size: 0.8125rem;
 }
 
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 /* --- Адаптив --- */
 @media (max-width: 768px) {
     .main-content {
