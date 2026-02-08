@@ -8,7 +8,6 @@
         <p class="lead">Choose a provider and time that works for you.</p>
     </header>
 
-<<<<<<< HEAD
     {# --- Filter bar --- #}
     <div class="filter-bar">
         <a href="{% url 'slots' %}" class="filter-chip {% if not selected_spec %}active{% endif %}">All</a>
@@ -67,49 +66,5 @@
             <p class="empty-msg">No slots available{% if selected_spec %} for this specialty{% endif %}.</p>
         {% endfor %}
     </div>
-=======
-    <div class="doctor-grid">
-        {% for slot in slots %}
-        <div class="doctor-card">
-            <img src="{% static 'images/doctor1.jpg' %}" alt="{{ slot.provider.user.username }}" class="doctor-photo">
-            
-            <div class="card-content">
-                <div class="card-header">
-                    <div>
-                        <h3>{{ slot.provider.user.get_full_name|default:slot.provider.user.username }}</h3>
-                        <p class="specialization">{{ slot.provider.specialization }}</p>
-                    </div>
-                    {% if slot.is_booked %}
-                        <span class="status booked">Booked</span>
-                    {% else %}
-                        <span class="status available">Available</span>
-                    {% endif %}
-                </div>
-                
-                <div class="card-info">
-                    <span class="info-item">
-                        <strong>Time:</strong> {{ slot.start_time|date:"M d, Y H:i" }}
-                    </span>
-                    {% if not slot.is_booked %}
-                    <span class="info-item">
-                        <a href="{% url 'provider_detail' slot.provider.id %}" class="link-more">View provider details</a>
-                    </span>
-                    {% endif %}
-                </div>
-                
-                <div class="card-footer">
-                    {% if not slot.is_booked %}
-                        <a href="{% url 'provider_detail' slot.provider.id %}" class="btn">Book Appointment</a>
-                    {% else %}
-                        <span class="info-item" style="color: var(--color-text-muted);">This slot is already booked</span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        {% empty %}
-            <p class="empty-msg">No slots available at the moment.</p>
-        {% endfor %}
-    </div>
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 </div>
 {% endblock %}

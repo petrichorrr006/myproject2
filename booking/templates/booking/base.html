@@ -8,11 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<<<<<<< HEAD
     <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
-=======
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
 </head>
 <body>
     <header class="site-header">
@@ -21,7 +17,6 @@
             <ul class="nav-links">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'slots' %}">Appointments</a></li>
-<<<<<<< HEAD
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'my_appointments' %}">My Bookings</a></li>
                     <li class="nav-user">
@@ -31,14 +26,11 @@
                 {% else %}
                     <li><a href="{% url 'login' %}" class="btn btn-nav">Login</a></li>
                 {% endif %}
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
             </ul>
         </nav>
     </header>
 
     <main class="main-content">
-<<<<<<< HEAD
         {% if messages %}
         <div class="messages-container">
             {% for message in messages %}
@@ -47,8 +39,6 @@
         </div>
         {% endif %}
 
-=======
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
         {% block content %}{% endblock %}
     </main>
 

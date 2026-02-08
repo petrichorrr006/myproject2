@@ -6,11 +6,7 @@
     <p class="hero-label">Clinic &amp; Online Consultations</p>
     <h1 class="hero-title">Welcome to Dr. Anels Clinic</h1>
     <p class="hero-subtitle">
-<<<<<<< HEAD
         Book appointments with specialist doctors. We offer quality care across {{ specializations|length }} specialties.
-=======
-        Book appointments with specialist doctors. We offer quality care in gynecology, dermatology and cardiology.
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
     </p>
     <a href="{% url 'slots' %}" class="main-btn">Make an appointment</a>
 </section>
@@ -21,23 +17,11 @@
         <p class="specializations-lead">Select a specialty to see available doctors and time slots.</p>
     </header>
     <div class="specializations">
-<<<<<<< HEAD
         {% for value, label in specializations %}
         <a href="{% url 'specialization' value %}" class="spec-card">
             <span class="spec-card-label">{{ label }}</span>
         </a>
         {% endfor %}
-=======
-        <a href="{% url 'specialization' 'dermatologist' %}" class="spec-card">
-            <span class="spec-card-label">Dermatologist</span>
-        </a>
-        <a href="{% url 'specialization' 'gynecologist' %}" class="spec-card">
-            <span class="spec-card-label">Gynecologist</span>
-        </a>
-        <a href="{% url 'specialization' 'cardiologist' %}" class="spec-card">
-            <span class="spec-card-label">Cardiologist</span>
-        </a>
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
     </div>
 </section>
 {% endblock %}

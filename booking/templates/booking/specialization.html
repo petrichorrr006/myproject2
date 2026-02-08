@@ -11,26 +11,17 @@
     <div class="doctor-grid">
     {% for slot in slots %}
     <div class="doctor-card">
-<<<<<<< HEAD
         {% if slot.provider.photo %}
         <img src="{{ slot.provider.photo.url }}" alt="{{ slot.provider }}" class="doctor-photo">
         {% else %}
         <img src="{% static 'images/default-doctor.svg' %}" alt="Doctor" class="doctor-photo">
         {% endif %}
-=======
-        <img src="{% static 'images/doctor1.jpg' %}" alt="{{ slot.provider.user.username }}" class="doctor-photo">
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
         
         <div class="card-content">
             <div class="card-header">
                 <div>
-<<<<<<< HEAD
                     <h3>{{ slot.provider.user.get_full_name|default:slot.provider }}</h3>
                     <p class="specialization">{{ slot.provider.get_specialization_display }}</p>
-=======
-                    <h3>{{ slot.provider.user.get_full_name|default:slot.provider.user.username }}</h3>
-                    <p class="specialization">{{ slot.provider.specialization }}</p>
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
                 </div>
                 {% if slot.is_booked %}
                     <span class="status booked">Booked</span>
@@ -49,15 +40,11 @@
                 {% if slot.is_booked %}
                     <span class="info-item" style="color: var(--color-text-muted);">This slot is already booked</span>
                 {% else %}
-<<<<<<< HEAD
                     {% if user.is_authenticated %}
                     <a href="{% url 'book_slot' slot.id %}" class="btn">Book Appointment</a>
                     {% else %}
                     <a href="{% url 'login' %}?next={% url 'specialization' specialization|lower %}" class="btn">Login to Book</a>
                     {% endif %}
-=======
-                    <a href="{% url 'provider_detail' slot.provider.id %}" class="btn">Book Appointment</a>
->>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
                 {% endif %}
             </div>
         </div>
