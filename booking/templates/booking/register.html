@@ -1,0 +1,44 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <h2>Create Account</h2>
+    <p class="auth-lead">Sign up with your phone number to book appointments.</p>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-error">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required autofocus>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="phone_number">Phone Number</label>
+        <input type="tel" id="phone_number" name="phone_number" placeholder="+7 (___) ___-__-__" required>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="password2">Confirm Password</label>
+        <input type="password" id="password2" name="password2" required>
+
+        <button type="submit" class="btn btn-full">Register & Verify Phone</button>
+    </form>
+
+    <p class="auth-footer">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h2>Available Appointment Slots</h2>
+        <p class="lead">Choose a provider and time that works for you.</p>
+    </header>
+
+<<<<<<< HEAD
+    {# --- Filter bar --- #}
+    <div class="filter-bar">
+        <a href="{% url 'slots' %}" class="filter-chip {% if not selected_spec %}active{% endif %}">All</a>
+        {% for value, label in specializations %}
+        <a href="{% url 'slots' %}?spec={{ value }}" class="filter-chip {% if selected_spec == value %}active{% endif %}">{{ label }}</a>
+        {% endfor %}
+    </div>
+
+    <div class="doctor-grid">
+        {% for slot in slots %}
+        <div class="doctor-card">
+            {% if slot.provider.photo %}
+            <img src="{{ slot.provider.photo.url }}" alt="{{ slot.provider }}" class="doctor-photo">
+            {% else %}
+            <img src="{% static 'images/default-doctor.svg' %}" alt="Doctor" class="doctor-photo">
+            {% endif %}
+            
+            <div class="card-content">
+                <div class="card-header">
+                    <div>
+                        <h3>{{ slot.provider.user.get_full_name|default:slot.provider }}</h3>
+                        <p class="specialization">{{ slot.provider.get_specialization_display }}</p>
+                    </div>
+                    {% if slot.is_booked %}
+                        <span class="status booked">Booked</span>
+                    {% else %}
+                        <span class="status available">Available</span>
+                    {% endif %}
+                </div>
+                
+                <div class="card-info">
+                    <span class="info-item">
+                        <strong>Time:</strong> {{ slot.start_time|date:"M d, Y H:i" }}
+                    </span>
+                    {% if not slot.is_booked %}
+                    <span class="info-item">
+                        <a href="{% url 'provider_detail' slot.provider.id %}" class="link-more">View provider details</a>
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <div class="card-footer">
+                    {% if not slot.is_booked %}
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'book_slot' slot.id %}" class="btn">Book Appointment</a>
+                        {% else %}
+                        <a href="{% url 'login' %}?next={% url 'slots' %}" class="btn">Login to Book</a>
+                        {% endif %}
+                    {% else %}
+                        <span class="info-item" style="color: var(--color-text-muted);">This slot is already booked</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="empty-msg">No slots available{% if selected_spec %} for this specialty{% endif %}.</p>
+        {% endfor %}
+    </div>
+=======
+    <div class="doctor-grid">
+        {% for slot in slots %}
+        <div class="doctor-card">
+            <img src="{% static 'images/doctor1.jpg' %}" alt="{{ slot.provider.user.username }}" class="doctor-photo">
+            
+            <div class="card-content">
+                <div class="card-header">
+                    <div>
+                        <h3>{{ slot.provider.user.get_full_name|default:slot.provider.user.username }}</h3>
+                        <p class="specialization">{{ slot.provider.specialization }}</p>
+                    </div>
+                    {% if slot.is_booked %}
+                        <span class="status booked">Booked</span>
+                    {% else %}
+                        <span class="status available">Available</span>
+                    {% endif %}
+                </div>
+                
+                <div class="card-info">
+                    <span class="info-item">
+                        <strong>Time:</strong> {{ slot.start_time|date:"M d, Y H:i" }}
+                    </span>
+                    {% if not slot.is_booked %}
+                    <span class="info-item">
+                        <a href="{% url 'provider_detail' slot.provider.id %}" class="link-more">View provider details</a>
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <div class="card-footer">
+                    {% if not slot.is_booked %}
+                        <a href="{% url 'provider_detail' slot.provider.id %}" class="btn">Book Appointment</a>
+                    {% else %}
+                        <span class="info-item" style="color: var(--color-text-muted);">This slot is already booked</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="empty-msg">No slots available at the moment.</p>
+        {% endfor %}
+    </div>
+>>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+</div>
+{% endblock %}

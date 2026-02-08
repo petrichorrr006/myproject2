@@ -1,0 +1,61 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+{% block title %}My Appointments{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h2>My Appointments</h2>
+        <p class="lead">Your upcoming and past bookings.</p>
+    </header>
+
+    {# --- Upcoming --- #}
+    <h3 class="section-title">Upcoming</h3>
+    {% if upcoming %}
+    <div class="appointments-list">
+        {% for b in upcoming %}
+        <div class="appointment-card">
+            {% if b.slot.provider.photo %}
+            <img src="{{ b.slot.provider.photo.url }}" alt="{{ b.slot.provider }}" class="doctor-photo">
+            {% else %}
+            <img src="{% static 'images/default-doctor.svg' %}" alt="Doctor" class="doctor-photo">
+            {% endif %}
+            <div class="appointment-info">
+                <h4>Dr. {{ b.slot.provider.user.get_full_name|default:b.slot.provider }}</h4>
+                <p class="specialization">{{ b.slot.provider.get_specialization_display }}</p>
+                <p class="info-item">{{ b.slot.start_time|date:"l, M d, Y" }} at {{ b.slot.start_time|date:"H:i" }}</p>
+            </div>
+            <span class="status {{ b.status }}">{{ b.get_status_display }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-msg">No upcoming appointments. <a href="{% url 'slots' %}">Book one now!</a></p>
+    {% endif %}
+
+    {# --- Past --- #}
+    <h3 class="section-title">Past / Cancelled</h3>
+    {% if past %}
+    <div class="appointments-list">
+        {% for b in past %}
+        <div class="appointment-card past">
+            {% if b.slot.provider.photo %}
+            <img src="{{ b.slot.provider.photo.url }}" alt="{{ b.slot.provider }}" class="doctor-photo">
+            {% else %}
+            <img src="{% static 'images/default-doctor.svg' %}" alt="Doctor" class="doctor-photo">
+            {% endif %}
+            <div class="appointment-info">
+                <h4>Dr. {{ b.slot.provider.user.get_full_name|default:b.slot.provider }}</h4>
+                <p class="specialization">{{ b.slot.provider.get_specialization_display }}</p>
+                <p class="info-item">{{ b.slot.start_time|date:"l, M d, Y" }} at {{ b.slot.start_time|date:"H:i" }}</p>
+            </div>
+            <span class="status {{ b.status }}">{{ b.get_status_display }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-msg">No past appointments.</p>
+    {% endif %}
+</div>
+{% endblock %}

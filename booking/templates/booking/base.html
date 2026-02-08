@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Doctor Appointment Booking{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
+=======
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+>>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="{% url 'home' %}" class="nav-logo">Dr. Anels Clinic</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'slots' %}">Appointments</a></li>
+<<<<<<< HEAD
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'my_appointments' %}">My Bookings</a></li>
+                    <li class="nav-user">
+                        <span class="nav-user-name">{{ user.get_full_name|default:user.username }}</span>
+                        <a href="{% url 'logout' %}" class="nav-logout">Logout</a>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="btn btn-nav">Login</a></li>
+                {% endif %}
+=======
+>>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+<<<<<<< HEAD
+        {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+=======
+>>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; {% now "Y" %} Dr. Anels Clinic. All rights reserved.</p>
+    </footer>
+</body>
+</html>

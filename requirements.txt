@@ -1,0 +1,6 @@
+asgiref==3.11.0
+Django==6.0
+pillow==12.1.0
+sqlparse==0.5.5
+gunicorn==25.0.1
+whitenoise==6.6.0

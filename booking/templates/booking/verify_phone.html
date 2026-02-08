@@ -1,0 +1,43 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}Verify Phone{% endblock %}
+
+{% block content %}
+<div class="auth-card">
+    <div class="confirmation-icon" style="background: #dbeafe; color: #2563eb;">&#9742;</div>
+    <h2>Verify Your Phone</h2>
+    <p class="auth-lead">
+        We sent a 6-digit code to <strong>{{ phone_number }}</strong>.
+        Enter it below to verify your number.
+    </p>
+
+    {% if otp_hint %}
+    <div class="alert alert-info" style="text-align: center;">
+        <strong>Demo mode:</strong> Your OTP code is <code style="font-size: 1.25rem; font-weight: 700; letter-spacing: 0.1em;">{{ otp_hint }}</code>
+    </div>
+    {% endif %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        <label for="otp_code">Enter OTP Code</label>
+        <input type="text" id="otp_code" name="otp_code"
+               maxlength="6" pattern="[0-9]{6}"
+               placeholder="______"
+               style="text-align: center; font-size: 1.5rem; letter-spacing: 0.3em; font-weight: 700;"
+               required autofocus>
+
+        <button type="submit" class="btn btn-full">Verify</button>
+    </form>
+
+    <p class="auth-footer">
+        Didn't receive the code?
+        <a href="{% url 'resend_otp' %}">Resend OTP</a>
+    </p>
+</div>
+{% endblock %}

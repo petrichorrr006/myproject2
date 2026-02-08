@@ -1,0 +1,58 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+{% block title %}{{ provider.user.get_full_name|default:provider.user.username }} — {{ provider.specialization }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p class="breadcrumb"><a href="{% url 'slots' %}">Appointments</a> → Provider</p>
+<<<<<<< HEAD
+
+    <div class="provider-profile">
+        {% if provider.photo %}
+        <img src="{{ provider.photo.url }}" alt="{{ provider }}" class="provider-profile-photo">
+        {% else %}
+        <img src="{% static 'images/default-doctor.svg' %}" alt="Doctor" class="provider-profile-photo">
+        {% endif %}
+        <div>
+            <h2>{{ provider.user.get_full_name|default:provider.user.username }}</h2>
+            <p class="meta">{{ provider.specialization }}</p>
+        </div>
+    </div>
+=======
+    <header class="page-header">
+        <h2>{{ provider.user.get_full_name|default:provider.user.username }}</h2>
+        <p class="meta">{{ provider.specialization }}</p>
+    </header>
+>>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+
+    <h3 class="section-title">Available Slots</h3>
+
+    {% if slots %}
+        <ul class="slot-list">
+            {% for slot in slots %}
+                <li class="slot-item">
+                    {% if slot.is_booked %}
+                        <span class="status booked">{{ slot.start_time|date:"M d, Y H:i" }} — Booked</span>
+                    {% else %}
+                        <span class="status available">{{ slot.start_time|date:"M d, Y H:i" }} — Available</span>
+<<<<<<< HEAD
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'book_slot' slot.id %}" class="btn btn-small">Book</a>
+                        {% else %}
+                        <a href="{% url 'login' %}?next={% url 'provider_detail' provider.id %}" class="btn btn-small">Login to Book</a>
+                        {% endif %}
+=======
+                        <a href="{% url 'slots' %}" class="btn btn-small">Book</a>
+>>>>>>> e9f28742f326e05bc75eb6dabc0d6ed2582cc4bf
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="empty-msg">No slots available for this provider.</p>
+    {% endif %}
+
+    <a href="{% url 'slots' %}" class="btn btn-back">← Back to all slots</a>
+</div>
+{% endblock %}

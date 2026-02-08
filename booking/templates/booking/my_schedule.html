@@ -1,0 +1,47 @@
+{% extends 'booking/base.html' %}
+{% load static %}
+
+{% block title %}My Schedule — Dr. {{ provider.user.get_full_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="provider-profile">
+        {% if provider.photo %}
+        <img src="{{ provider.photo.url }}" alt="{{ provider }}" class="provider-profile-photo">
+        {% else %}
+        <img src="{% static 'images/default-doctor.svg' %}" alt="Doctor" class="provider-profile-photo">
+        {% endif %}
+        <div>
+            <h2>My Schedule</h2>
+            <p class="meta">{{ provider.get_specialization_display }}</p>
+        </div>
+    </div>
+
+    {% if schedule %}
+    <ul class="slot-list">
+        {% for item in schedule %}
+        <li class="slot-item">
+            <div>
+                <strong>{{ item.slot.start_time|date:"M d, Y H:i" }}</strong>
+                — {{ item.slot.end_time|date:"H:i" }}
+            </div>
+            {% if item.booking %}
+                <span class="info-item">
+                    Patient: <strong>{{ item.booking.client.get_full_name|default:item.booking.client.username }}</strong>
+                </span>
+                <span class="status {{ item.booking.status }}">{{ item.booking.get_status_display }}</span>
+            {% else %}
+                {% if item.slot.is_booked %}
+                    <span class="status booked">Booked</span>
+                {% else %}
+                    <span class="status available">Available</span>
+                {% endif %}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty-msg">No slots in your schedule yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
